@@ -1,5 +1,6 @@
 # MVPCryproportfolio
 Crypto currencies portfolio. Maded in MVP (SAMPLE)
+Using Retrofit, GSON, Dagger2, PaperKnife, SQLite.
 
 
 
