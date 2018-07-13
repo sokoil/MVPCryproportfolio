@@ -9,5 +9,5 @@ import ru.weblokos.mvpcryproportfolio.Model.Currency;
  */
 
 public interface CurrencyView {
-    void currenciesReady(List<Currency> currencies);
+    void currenciesReady();
 }

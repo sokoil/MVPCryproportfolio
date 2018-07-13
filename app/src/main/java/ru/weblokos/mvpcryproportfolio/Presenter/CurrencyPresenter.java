@@ -6,6 +6,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import ru.weblokos.mvpcryproportfolio.DBHelper;
 import ru.weblokos.mvpcryproportfolio.Model.Currency;
 import ru.weblokos.mvpcryproportfolio.Service.CurrencyService;
 import ru.weblokos.mvpcryproportfolio.View.CurrencyView;
@@ -18,9 +19,11 @@ public class CurrencyPresenter implements CellDataProvider {
 
     private CurrencyService currencyService;
     private CurrencyView currencyView;
+    private DBHelper dbhelper;
 
-    public CurrencyPresenter(CurrencyView view) {
+    public CurrencyPresenter(CurrencyView view, DBHelper dbhelper) {
         this.currencyView = view;
+        this.dbhelper = dbhelper;
 
         if (this.currencyService == null) {
             this.currencyService = new CurrencyService();
@@ -34,7 +37,10 @@ public class CurrencyPresenter implements CellDataProvider {
                 .enqueue(new Callback<List<Currency>>() {
                     @Override
                     public void onResponse(Call<List<Currency>> call, Response<List<Currency>> response) {
-                        currencyView.currenciesReady(response.body());
+                        if(response.body() != null)
+                            for(Currency currency : response.body())
+                                dbhelper.addOrUpdateCurrency(currency);
+                        currencyView.currenciesReady();
                     }
 
                     @Override
