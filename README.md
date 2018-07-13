@@ -1,6 +1,8 @@
 # MVPCryproportfolio
 Crypto currencies portfolio. Maded in MVP (SAMPLE)
+
 Some parts of the Cryptoportfolio app. Special for headhunters.
+
 Using Retrofit, GSON, Dagger2, PaperKnife, SQLite.
 
 
